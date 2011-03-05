@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+{% load comments %}
+{% load stories_extras %}
+{% load markup %}
+
+{% block content %}
+    <h2>Search StoriTell.com</h2><br />
+    <p class="commentdesc">StoriTell has a wonderful search feature you can use to find stories you might like. It's like a librarian for the subconscious of the blogosphere. Pretty cool, right?</p>
+    <br /><form method="get" action=".">
+    		<div id="searchfields">
+            {% for field in form %}
+            
+            {% if field.name == "q" %}
+            {{ field }}
+            {% endif %}
+            
+            {% endfor %}
+                    <input type="submit" value="Search">
+                    </div>
+        {% if query %}<br /><br /><br />
+            <h2>Results:</h2>
+			<br />
+            <div id="allStories">
+            {% for result in page.object_list %}
+			<div class="entryBox searchList">
+                <div class="title">
+                    <a href="{{result.object.get_absolute_url}}">{{result.object.maintext|truncatewords:"3"}}</a>
+                </div>
+                {% get_comment_count for result.object as num_comments %}
+                <div class="graybar">
+                	<div class="left">Published on {{result.object.pub_date|date:"M j"}}{% if result.object.pub_date.day == 1 %}st{% endif %}{% if Story.pub_date.day == 2 %}nd{% endif %}{% if result.object.pub_date.day == 3 %}rd{%endif%}{% if result.object.pub_date.day > 3 %}th{%endif%}, {{result.object.pub_date|date:"Y"}}</div><div class="right"></div>
+                </div>
+                <div class="clear">
+                </div>
+				<div class="leftcol">
+					<div class="totalvotes">
+						+<span id="votes{{result.object.id}}">{{result.object.upvotes}}</span>
+					</div>
+				</div>
+				<div class="mainText">
+					{{result.object.maintext|truncatewords_html:"300"|markdown|spacify}}
+					<div class="bottom">
+						<div class="right">
+							Share on: Facebook, Twitter. <a href="{{result.object.get_absolute_url}}#comments"> {{num_comments}} Comments.</a>
+						</div>
+					</div>
+				</div>
+			<div class="clear">
+			</div>
+			</div>
+
+            {% empty %}
+                <p>No results found.</p>
+            {% endfor %}
+			</div>
+            {% if page.has_previous or page.has_next %}
+                <div class="navigation">
+                    {% if page.has_previous %}<a href="?q={{ query }}&amp;page={{ page.previous_page_number }}">{% endif %}&laquo; Previous{% if page.has_previous %}</a>{% endif %}
+                    |
+                    {% if page.has_next %}<a href="?q={{ query }}&amp;page={{ page.next_page_number }}">{% endif %}Next &raquo;{% if page.has_next %}</a>{% endif %}
+                </div>
+            {% endif %}
+        {% else %}
+            {# Show some example queries to run, maybe query syntax, something else? #}
+        {% endif %}
+    </form>
+			<div class="clearer"></div>
+{% endblock %}

@@ -1,0 +1,102 @@
+{% load stories_extras %}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<link rel="stylesheet" type="text/css" href="{{MEDIA_URL}}/css/reset.css" />
+	<link rel="stylesheet" type="text/css" href="{{MEDIA_URL}}/css/main.css" />
+	{% block metadata %}
+	<title>StoriTell</title>
+	{% endblock %}
+	{% block fbmeta %}
+	<meta property="og:title" content="StoriTell"/>
+	<meta property="og:type" content="website"/>
+	<meta property="og:image" content="http://storitell.com/media/img/storitell-logo.png"/>
+	<meta property="og:site_name" content="StoriTell"/>
+	<meta property="fb:admins" content="StoriTell"/>
+	{% endblock %}
+	{% block stylesheet %}
+    {% endblock %}
+	<!--[if IE]>
+    <link rel="stylesheet" type="text/css" href="{{MEDIA_URL}}/css/hovermenu.css" />
+    <![endif]-->
+    <!--[if lte IE 8]>
+	<script type="text/JavaScript" src="{{MEDIA_URL}}/js/IE9.js"></script>
+	<![endif]-->
+	<script type="text/JavaScript" src="{{MEDIA_URL}}/js/jquery.js"></script>
+	<script type="text/JavaScript" src="{{MEDIA_URL}}/js/cufon-yui.js"></script>
+	<script type="text/JavaScript" src="{{MEDIA_URL}}/js/fonts/sortsmillgoudy.js"></script>
+    <script type="text/JavaScript" src="{{MEDIA_URL}}/js/jquery.simplemodal.1.4.1.min.js"></script>
+    <script type="text/JavaScript" src="{{MEDIA_URL}}/js/sha1.js"></script>
+    <script type="text/JavaScript" src="{{MEDIA_URL}}/js/md5.js"></script>
+    <script type="text/JavaScript" src="{{MEDIA_URL}}/js/main_library.js"></script>
+    {% show_analytics %}
+    {% block javascript %}
+    {% endblock %}
+</head>
+<body>
+	<div class="header">
+		<div id="mainbar">
+			<div class="title"><a href="/"><img src="{{MEDIA_URL}}/img/storitell-logo.png" alt="StoriTell" /></a></div><br />
+			<div class="nav cufon"><ul><li><a href="/home/recent/">recent</a></li><li><a href="#" id="poplink">popular</a><ul><li><a href="/popular/thisweek/">this week</a></li><li><a href="/popular">forever</a></li></ul></li><li><a href="/search/">search</a></li></ul></div>
+		</div>
+	</div>
+	<div class="maincontent">
+		<!--[if lte IE 6]>
+		<div class="ieError">
+		You are using an unsupported browser. Please consider updating to one of these modern browsers:
+		<ul class="browserSelection"><li><a href="http://www.google.com/chrome">Chrome</a></li><li><a href="http://www.getfirefox.com">Firefox</a></li><li><a href="http://www.microsoft.com/ie">Internet Explorer 8</a></li></ul>
+		</div><br />
+		<![endif]-->
+
+        {% block content %}
+        {% endblock %}
+        {% show_chatter %}
+        <div class="bottomlinks"><a href="/about">About</a>|<a href="/legal">Legal</a></div>
+        <div class="bottomlinks" style="margin-top: 4px;"><a>Feeds:</a><a href="http://www.storitell.com/latest/feed" target="_blank">Latest</a>,<a href="http://www.storitell.com/popular/feed" target="_blank">Popular</a></div>
+        <div class="bottomlinks">Follow StoriTell on: <a href="http://www.twitter.com/storitell/" target="_blank">Twitter</a>,&nbsp;<a href="http://www.facebook.com/pages/StoriTell/172652796094950" target="_blank">Facebook</a></div>
+        <div id="copyrightbox">
+        </div>
+        <div id="cleverquotebox">
+        {% show_quote %}
+        </div>
+	</div>
+<div id="constructionbox" class="modalbox">
+    <h2>New features!</h2>
+    <div class="explaintext">
+        <p>Don't be alarmed when a new window comes up when you submit a story. We're testing out a new feature to let you delete stories you have submitted. If you think this is a terrible idea, just shoot me an email at estenh AT storitell DOT com.</p>
+        <p class="exitbox"><a class="exitbox">Sounds good!</a></p>
+    </div>
+</div>
+<div id="passkeybox" class="modalbox">
+    <h2>One more thing!</h2>
+    <div class="explaintext">
+        <p>If you want to be able to delete your story after you've posted it, please type in two unique passphrases in the boxes below:</p>
+		<p class="errormessage" id="submitErrors"></p>
+		<div class="submitBlock">
+			<input type="text" id="pkey1" name="pkey1" /><br />
+			<input type="text" id="pkey2" name="pkey2" /><br /><br />
+			<a id="pDontcare">Pick some random keys for me</a><br />
+			<a id="finalSubmit">Okay, I'm done</a>
+		</div>
+    </div>
+</div>
+<div id="deletebox" class="modalbox">
+    <h2>Are you sure!</h2>
+    <div class="explaintext">
+        <p>Deleting a story will remove it forever from StoriTell. To delete your story, enter in the two passcodes you typed in when you submitted it:</p>
+		<p class="errormessage" id="deleteErrors"></p>
+		<div class="submitBlock">
+			<input type="text" id="dkey1" name="dkey1" /><br />
+			<input type="text" id="dkey2" name="dkey2" /><br /><br />
+			<a id="deleteSubmit">Remove the story</a>
+		</div>
+    </div>
+</div>
+<script type="text/JavaScript">
+Cufon.replace(".cufon");
+Cufon.now();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,122 @@
+{% extends 'base.html' %}
+{% load comments %}
+{% load markup %}
+{% load stories_extras %}
+	{% block metadata %}
+	<title>StoriTell: {{Story.maintext|truncatewords:3|striptags}}</title>
+	{% endblock %}
+	{% block fbmeta %}
+	<meta property="og:title" content="StoriTell: {{Story.maintext|truncatewords:3|striptags}}"/>
+	<meta property="og:type" content="website"/>
+	<meta property="og:image" content="http://storitell.com/media/img/storitell-logo.png"/>
+	<meta property="og:site_name" content="StoriTell"/>
+	<meta property="og:url" content="http://www.storitell.com/{{Story.get_absolute_url}}"/>
+	<meta property="fb:admins" content="1442820160"/>
+	{% endblock %}
+    {% block content %}
+		<div id="allStories">
+			<br />
+			<div class="entryBox">
+                <div class="title">
+                    <a href="{{Story.get_absolute_url}}">{{Story.title|striptags}}</a>
+                </div>
+                <div class="graybar">
+                	<div class="left"><a href="#" id="voteup{{Story.id}}">I like this (+1)</a></div><div class="right">Published on {{Story.pub_date|date:"M j"}}{% if Story.pub_date.day == 1 %}st{% endif %}{% if Story.pub_date.day == 2 %}nd{% endif %}{% if Story.pub_date.day == 3 %}rd{%endif%}{% if Story.pub_date.day > 3 %}th{%endif%}, {{Story.pub_date|date:"Y"}}</div>
+                    <script type="text/javascript">
+                        $(document).ready(function(){
+                            $("#voteup{{Story.id}}").bind("click", function(){
+                                $.post("/ajax/storyVote/", {"storyID": {{Story.id}} }, function(data){
+                                    if (data == "success"){
+                                        var posVotes = parseInt($("#votes{{Story.id}}").html());
+                                        posVotes += 1;
+                                        $("#votes{{Story.id}}").html(posVotes);
+                                    }
+                                });
+                            });
+                        });
+                    </script>
+                </div>
+                <div class="clear">
+                </div>
+				<div class="leftcol">
+					<div class="totalvotes">
+						<br />
+						+<span id="votes{{Story.id}}">{{Story.upvotes}}</span>
+					</div>
+				</div>
+				<div class="mainText">
+					{{Story.maintext|markdown:"safe"}}
+					<div class="bottom">
+						<div class="right">
+                        {% get_comment_count for Story as num_comments %}
+							<a href="http://twitter.com/share" class="twitter-share-button" data-count="horizontal" data-url="http://www.storitell.com/{{Story.get_absolute.url}}" data-via="storitell">Tweet</a><script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
+							<iframe src="http://www.facebook.com/plugins/like.php?href=http%3A%2F%2Fwww.storitell.com{{Story.get_absolute_url|urlencode:""}}&amp;layout=button_count&amp;show_faces=true&amp;width=100&amp;action=like&amp;colorscheme=light&amp;height=21" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:100px; height:21px;" allowTransparency="true"></iframe>{{ num_comments }} comments. &nbsp;&nbsp; <a href="http://www.storitell.com{{Story.get_absolute_url}}">Permalink</a>
+						</div>
+					</div>
+					<br />
+                    <div class="comments">
+                        <div class="comment_list">
+                        {% get_comment_list for Story as comment_list %}
+                        {% for comment in comment_list %}
+                        {% if comment.rank > -5 %}
+                        <div class="commentbox {% if not forloop.counter|divisibleby:'2' %}odd{% endif %}">
+                        <div class="comment">{{comment.comment|markdown:"safe"}}</div>
+                        <div class="rankbox">{% if comment.rank >= 0 %}+{%endif%}<div id="rank{{comment.id}}" class="rank">{{comment.rank}}</div><div class="changerank">This comment was: <a href="#" id="addrank{{comment.id}}">Great</a>&nbsp;|&nbsp;<a href="#" id="minusrank{{comment.id}}">Awful</a></div></div>
+                        <script type="text/javascript">
+                        $(document).ready(function(){
+                            $("#addrank{{comment.id}}").bind("click",function(){
+                                $.post("/ajax/commentVote/",{"commentID":{{comment.id}},"commentAct":"Up"}, function(data){
+                                    if (data == "success"){
+                                        currentRank = parseInt($("#rank{{comment.id}}").html());
+                                        currentRank += 1;
+                                        $("#rank{{comment.id}}").html(currentRank);
+                                    }
+                                });
+                            });
+                            $("#minusrank{{comment.id}}").bind("click",function(){
+                                $.post("/ajax/commentVote/",{"commentID":{{comment.id}},"commentAct":"Down"}, function(data){
+                                    if (data == "success"){
+                                        currentRank = parseInt($("#rank{{comment.id}}").html());
+                                        currentRank -= 1;
+                                        $("#rank{{comment.id}}").html(currentRank);
+                                    }
+                                });
+                            });
+                        });
+                        </script>
+                        </div>
+                        {% else %}
+                        <div class="downranked">This comment has been downranked into oblivion</li>
+                        {% endif %}
+                        {% endfor %}
+                        </div>
+                        <div class="divider"></div>
+                        <p class="commentdesc">Please be considerate and constructive with your comments. Anonymity is not a blanket in which you can hide under to spook and scare other writers like a malicious five-year-old. It's more like a safety blanket, as far as ill-conceived metaphors go.</p>
+                        {% get_comment_form for Story as comment_form %}
+                            <form action="{% comment_form_target %}" method="post">
+                            {% csrf_token %}
+                            {% if next %}<input name="next" type="hidden" value="{{ next }}" />{% endif %}
+                            {% for field in comment_form %}
+                            {% if field.is_hidden %}
+                                <div>{{ field }}</div>
+                            {% else %}
+                                {% if field.name != "name" and field.name != "email" and field.name != "url" %}
+                                    {% if field.errors %}{{ field.errors }}{% endif %}
+                                    {% ifequal field.name "honeypot" %}<div style="display: none">
+                                    {{ field }}</div>
+                                    {% else %}
+                                    {{field}}
+                                    {% endifequal %}
+                                {% endif %}
+                            {% endif %}
+                        {% endfor %}
+        	<input type="hidden" name="next" value="{{ Story.get_absolute_url }}" />
+        <br /><input class="submit-post" name="post" type="submit" value="Post" />
+   </form>                        
+                    </div>
+				</div>
+			</div>
+			<div class="clearer"></div>
+			<br /><br />
+		</div>
+{% endblock %}

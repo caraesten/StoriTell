@@ -1,0 +1,11 @@
+from django.core.management.base import BaseCommand, CommandError
+from storitell.stories.models import ip_address
+
+class Command(BaseCommand):
+	help = 'Clears IP addresses for up/down votes'
+
+	def handle(self, **options):
+		addresses = ip_address.objects.all()
+		for address in addresses:
+			address.delete()
+		self.stdout.write("Cleared IPs")

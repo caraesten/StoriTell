@@ -1,0 +1,36 @@
+.header #mainbar .nav ul li {
+    float: left;
+    display: block;
+    position: relative;
+}
+.header #mainbar .nav ul li:hover ul, .header #mainbar .nav ul li a:hover ul{
+    display: block;
+    position: relative;
+    margin: 0;
+    padding: 0;
+    float: none;
+}
+.header #mainbar .nav ul li:hover ul li, .header #mainbar .nav ul li a:hover ul li{
+    display: block;
+    float: none;
+    width: auto;
+    position: relative;
+}
+
+.header #mainbar .nav ul li:hover ul li:hover, .header #mainbar .nav ul li a:hover ul li a:hover  {
+    background-color: #eeeeee;
+}
+.header #mainbar .nav ul li:hover ul li, .header #mainbar .nav ul li a:hover ul li  {
+    display: block;
+    margin-top: 0;
+    margin-left: 0;
+    text-align: left;
+    float: left;
+    position: relative;
+}
+.header #mainbar .nav ul li ul {
+    display: block;
+    font-size: 12pt;
+    float: none;
+    position: relative;
+}

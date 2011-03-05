@@ -1,0 +1,10 @@
+    <div class="divider"></div>
+    <h2>Chatter:</h2>
+   	<div id="recent-comments">
+		{% for comment in comments %}
+			<div class="recentcomment {% if not forloop.counter|divisibleby:2%}odd{%endif%}">
+				<div class="commenttext"><a class="nounderline" href="{{ comment.content_object.get_absolute_url }}">"{{comment.comment|truncatewords:30}}" </a></div>
+				<div class="storylink">&mdash; on the story "<a href="{{comment.content_object.get_absolute_url }}">{{ comment.content_object.maintext|truncatewords:3 }}</a>"</div>
+			</div>
+		{% endfor %}
+	</div>

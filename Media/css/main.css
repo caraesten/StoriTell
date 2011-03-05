@@ -1,0 +1,418 @@
+@font-face {
+	font-family: Sorts Mill Goudy;
+	src: url('fonts/SortsMillGoudy.otf');
+}
+body {
+	font-family: Sorts Mill Goudy, Garamond, Serif;
+	color: #000;
+	background-color: #fefefe;
+    behavior: url("/media/css/csshover3.htc");
+}
+a {
+	color: #000;
+    cursor:pointer; cursor:hand;
+    text-decoration: underline;
+}
+a:hover {
+	color: #cc0011;
+}
+.nav a,.nav a:hover, #randomquote a {
+	text-decoration: none;
+}
+h1 {
+	font-size: 28pt;
+}
+h2 {
+	font-size: 20pt;
+}
+em {
+	font-weight: bold;
+}
+strong {
+	font-weight: bold;
+}
+.maincontent {
+	width: 770px;
+	margin-left: auto;
+	margin-right: auto;
+}
+a.nounderline {
+	text-decoration: none;
+}
+.header {
+	width: 100%;
+	height: 140px;
+	margin-bottom: 10px;
+}
+.header .title {
+	font-size: 34pt;
+	padding-top:15px;
+	float: left;
+	margin: 5px;
+}
+.header #mainbar {
+	width: 740px;
+	height: 85px;
+	margin-left: auto;
+	margin-right: auto;
+}
+.header #mainbar .logo {
+	float: left;
+}
+.header #mainbar img {
+	margin-top: 15px;
+}
+.header #mainbar .nav {
+	float: right;
+	margin-top: 32px;
+	font-weight: normal;
+	font-size: 18px;
+	padding: 2px 5px;
+	background-color: #fff;
+	border-bottom: 1px solid #e5e5e5;
+	text-align: center;
+	letter-spacing: .08em;
+}
+.header #mainbar .nav a {
+	margin: 5px;
+	color: #282e36;
+}
+.header #mainbar .nav ul li {
+    float: left;
+    display: block;
+    position: relative;
+    float: left;
+}
+.header #mainbar .nav ul li:hover ul, .header #mainbar .nav ul li a:hover ul{
+    display: block;
+    position: absolute;
+    margin: 0;
+    padding: 0;
+    float: left;
+}
+.header #mainbar .nav ul li:hover ul li, .header #mainbar .nav ul li a:hover ul li{
+    float: left;
+    width: 85px;
+}
+
+.header #mainbar .nav ul li:hover ul li:hover, .header #mainbar .nav ul li a:hover ul li a:hover  {
+    background-color: #eeeeee;
+}
+.header #mainbar .nav ul li:hover ul li, .header #mainbar .nav ul li a:hover ul li  {
+    display: block;
+    margin-top: 5px;
+    margin-left: 2px;
+    text-align: left;
+    float: left;
+}
+.header #mainbar .nav ul li ul {
+    display: none;
+    font-size: 12pt;
+    float: left;
+    position: absolute;
+}
+#storyContain {
+	width: 720px;
+    margin-left: auto;
+    margin-right: auto;
+	padding-top: 10px;
+}
+#story {
+	width: 100%;
+	max-width: 698px;
+	height: 223px;
+	max-height: 223px;
+	background-repeat: no-repeat;
+	border: 0;
+	resize: none;
+	padding: 10px;
+	border: 1px solid #e5e5e5;
+	background-color: #fff;
+}
+#understory {
+	height: 60px;
+	width: 100%;
+	margin-top: 5px;
+}
+#understory .left {
+	float: left;
+	font-size: 13px;
+}
+#understory .left p {
+	margin-top: 5px;
+}
+#understory .left h2 {
+	font-size: 24px;
+}
+#understory .right {
+	float: right;
+}
+#understory .right button{
+	width: 170px;
+	height: 35px;
+	font-size: 18px;
+}
+.showhidelink img {
+	margin-top: -10px;
+}
+#panelbottom {
+	width: 700px;
+	padding: 10px;
+	padding-top: 15px;
+    margin-left: auto;
+    margin-right: auto;
+}
+#panelbottom .divider {
+	width: 650px;
+	float: left;
+	height: 1px;
+	background-color: #d5d5d5;
+}
+#panelbottom .showhide {
+	float: right;
+	margin-top: -8px;
+	margin-right: 5px;
+}
+.clearer {
+	clear: both;
+}
+#allStories {
+
+}
+.entryBox {
+	width: 740px;
+	float: left;
+}
+.entryBox .title {
+	font-size: 28pt;
+}
+.entryBox .graybar {
+	width: 100%;
+	background-color: #eeeeee;
+	float: left;
+	padding: 5px 10px;
+	margin: 10px 0;
+	font-size: 10pt;
+}
+.entryBox .graybar .left {
+	float: left;
+}
+.entryBox .graybar .right {
+	float: right;
+}
+.entryBox .clear {
+	clear: both;
+}
+.entryBox .leftcol {
+	float: left;
+	width: 110px;
+}
+.entryBox .leftcol .totalvotes {
+	text-align: left;
+	font-size: 24pt;
+	margin-right: 10px;
+	margin-top: 10px;
+}
+.entryBox .mainText {
+	float: right;
+	width: 620px;
+	margin-right: 10px;
+}
+.entryBox .mainText p,  .entryBox .mainText code {
+    max-width: 618px;
+    word-wrap: break-word;
+    margin-bottom: 10px;
+}
+.entryBox .mainText .bottom {
+	margin-top: 8px;
+	font-size: 10pt;	
+}
+.entryBox .mainText .bottom .upvote {
+	float: left;
+	text-decoration: italics;
+}
+.entryBox .mainText .bottom .right {
+	float: right;
+}
+.comments {
+    clear: both;
+}
+.commentbox {
+	width: 95%;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 10px;
+	margin-bottom: 10px;
+    padding: 5px;
+
+}
+.comment {
+	margin-bottom: 5px;
+}
+.odd {
+	background-color: #efefef;
+}
+.rank {
+	float: left;
+	font-size: 16pt;
+	font-weight: bold;
+}
+.changerank {
+	float: right;
+    font-size: 10pt;
+}
+.howto {
+    float: left;
+}
+.howto-right {
+	float: right;
+	font-size: 13px;
+}
+
+#recent-comments h4 {
+	display: none;
+}
+.bottomlinks {
+    margin-left: auto;
+    margin-right: auto;
+    width: 250px;
+    text-align: center;
+    margin-top: 30px;
+    margin-bottom: 10px;
+}
+.bottomlinks a {
+    padding: 0 5px;
+    text-decoration: none;
+}
+.bottomlinks a:hover {
+    text-decoration: none;
+}
+.divider {
+	width: 100%;
+	height: 1px;
+	background-color: #d5d5d5;
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+.recentcomment {
+	margin: 10px;
+	padding: 5px;
+}
+.storylink {
+	margin-top: 10px;
+	margin-left: 15px;
+}
+.commentdesc {
+	font-size: 10pt;
+	line-height: 150%;
+}
+#searchfields {
+	width: 300px;
+	text-align: center;
+	margin-left: auto;
+	margin-right: auto;
+}
+.searchList {
+	margin-left: 10px;
+	margin-bottom: 15px;
+}
+.navigation {
+	width: 150px;
+	text-align: center;
+	margin-left: auto;
+	margin-right: auto;
+}
+.modalbox {
+    display: none;
+    border: 2px solid #000;
+    width: 500px;
+    height: auto;
+    padding: 15px;
+    background-color: #fff;
+}
+.modalbox h2 {
+    text-align: center;
+    margin-bottom: 10px;
+}
+.modalbox p {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    line-height: 150%;
+}
+.modalbox .exitbox {
+    text-align: center;
+    font-size: 16pt;
+}
+#staticpage p {
+    line-height: 125%;
+    margin: 10px 0;
+}
+#staticpage .explain {
+    color: #333;
+    font-size: 10pt;
+}
+#staticpage li {
+    margin-left: 10px;
+    margin-top: 10px;
+}
+#randomquote, #randomquote a {
+    color: #888;
+    text-align: center;
+}
+#randomquote a:hover {
+	color: #cc0011;
+}
+#tempcenter {
+	width: 400px;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 200px;
+	text-align: center;
+}
+#tempcenter p {
+	font-size: 28pt;
+	font-family: Sorts Mill Goudy, Garamond, Serif;
+}
+#tempcenter p.launchdate {
+	font-size: 18pt;
+	font-style: italic;
+}
+p.bottomtext {
+	width: 100%;
+	text-align: center;
+	color: #888;
+}
+.submitBlock {
+	text-align: center;
+}
+#welcomeExplain {
+	width: 400px;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 5px;
+	text-align: center;
+	font-style: italic;
+	font-size: 15pt;
+	border-bottom: 1px solid #e5e5e5;
+	padding-bottom: 5px;
+	line-height: 125%;
+}
+.ieError {
+	color: #ff0000;
+	width: 650px;
+	margin-left: auto;
+	margin-right: auto;
+	text-align: center;
+}
+.ieError .browserSelection {
+	width: 422px;
+	margin-left: auto;
+	margin-right: auto;
+}
+.ieError .browserSelection li{
+	list-style: none;
+	float: left;
+	width: 120px;
+	margin-left: 10px;
+	margin-right: 10px;
+}

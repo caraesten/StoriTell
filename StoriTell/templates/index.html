@@ -1,0 +1,148 @@
+{% extends 'base.html' %}
+{% load comments %}
+{% load markup %}
+{% load stories_extras %}
+    {% block javascript %}
+    {% endblock %}
+        {% block content %}
+        <div id="welcomeExplain">Share stories about your life. <br />Completely anonymously.</div>
+		<div id="storyContain" class="open">
+		<br /><div id="storyboxTop">
+			<p class="howto">Just start typing in the box below.</p>
+            </div>
+			<div class="howto-right">
+				<p class="subhead"><a id="whytell">Why tell my story?</a>&nbsp;&nbsp;<a id="howtell">How do I use this?</a></p>
+			</div>
+			<br />
+			<textarea name="story" id="story"></textarea>
+			<div id="understory">
+				<div class="left">
+				<h2>We all have stories to tell</h2>
+	            <p class="charsleft">Make sure you add another <span id="numchars">100</span> characters!</p>
+				</div>
+				<div class="right">
+					<button type="button" id="tell" name="tell">Tell mine</button>
+				</div>
+			</div>
+		</div>
+		<div class="clearer"></div>
+		<div id="panelbottom">
+			<div class="divider">
+			</div>
+			<div class="showhide">
+				<a class="showhidelink"><img src="/media/img/minus32.png" alt="Read"/></a>
+			</div>
+		</div>
+		<br />
+		<div id="allStories">
+			<br />
+			{% for Story in stories.object_list %}
+			<div class="entryBox">
+                <div class="title">
+                    <a href="{{Story.get_absolute_url}}">{{Story.title|striptags|markdown:"safe"}}</a>
+                </div>
+                {% get_comment_count for Story as num_comments %}
+                <div class="graybar">
+                	<div class="left"><a id="voteup{{Story.id}}" class>I like this (+1)</a></div><div class="right">Published on {{Story.pub_date|date:"M jS, Y"}}</div>
+                    <script type="text/javascript">
+                        $(document).ready(function(){
+                            $("#voteup{{Story.id}}").bind("click", function(){
+                                $.post("/ajax/storyVote/", {"storyID": {{Story.id}} }, function(data){
+                                    if (data == "success"){
+                                        var posVotes = parseInt($("#votes{{Story.id}}").html());
+                                        posVotes += 1;
+                                        $("#votes{{Story.id}}").html(posVotes);
+                                    }
+                                });
+                            });
+                        });
+                    </script>
+                </div>
+                <div class="clear">
+                </div>
+				<div class="leftcol">
+					<div class="totalvotes">
+						+<span id="votes{{Story.id}}">{{Story.upvotes}}</span>
+					</div>
+				</div>
+				<div class="mainText">
+					{{Story.maintext|markdown:"safe"}}
+					<div class="bottom">
+						<div class="right">
+							<a href="http://twitter.com/share" class="twitter-share-button" data-count="horizontal" data-url="http://www.storitell.com/{{Story.get_absolute.url}}" data-via="storitell">Tweet</a><script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
+							<iframe src="http://www.facebook.com/plugins/like.php?href=http%3A%2F%2Fwww.storitell.com{{Story.get_absolute_url|urlencode:""}}&amp;layout=button_count&amp;show_faces=true&amp;width=100&amp;action=like&amp;colorscheme=light&amp;height=21" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:100px; height:21px;" allowTransparency="true"></iframe> <a href="http://www.storitell.com{{Story.get_absolute_url}}">Permalink</a>&nbsp;&nbsp;<a id="reportStory{{Story.id}}">Report story</a>&nbsp;&nbsp;<a href="{{Story.get_absolute_url}}#comments">{{num_comments}} Comments.</a>
+							<script type="text/javascript">
+							$(document).ready(function(){
+								$("#reportStory{{Story.id}}").bind("click",function(){
+									$.post("{% url report_story %}", {'storyID':"{{Story.id}}"},function(data){
+										if (data == "success"){
+											$("#reportStory{{Story.id}}").html("Reported!");
+											$("#reportStory{{Story.id}}").unbind();
+										}
+									});
+								});
+							});
+							</script>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="clearer"></div>
+			<br /><br />
+			{% endfor %}
+		</div>
+{% if stories.has_previous or stories.has_next %}
+	<div class="navigation">
+    	{% if stories.has_previous %}<a href="?page={{ stories.previous_page_number }}">{% endif %}&laquo; Previous{% if stories.has_previous %}</a>{% endif %}
+		|
+		{% if stories.has_next %}<a href="?page={{ stories.next_page_number }}">{% endif %}Next &raquo;{% if stories.has_next %}</a>{% endif %}
+	</div>
+{% endif %}
+<div id="whybox" class="modalbox">
+    <h2>Stop censoring yourself!</h2>
+    <div class="explaintext">
+        <p>So much on the internet is impersonally personal. Social networking is superficial, blogging is about image and e-mails are for Fortune 500 execs. Stop worrying about the effects of what you put online and just let loose. Get it off your chest. Here at StoriTell, you can vent about work, laugh about last night and mourn a break-up without worrying about what the Google spiders might learn.</p>
+        <p>We want a site devoted to earnestness and honesty. We want the internet to be truly open, not governed by social rules and career stress. This is a site for real discussion, real people and real emotion. Tell your story and be a part of it.</p>
+        <p class="exitbox"><a class="exitbox">Sounds good!</a></p>
+    </div>
+</div>
+<div id="howbox" class="modalbox">
+    <h2>It's easy!</h2>
+    <div class="explaintext">
+        <p>Just type your story into the box on the page, and click 'Tell mine'. There is no maximum size, but you do have to write at least 100 characters. Once you submit it, your story will travel through the series of tubes and end up in our server. Your page will refresh and BAM! Your story is on the site.</p>
+        <p>For the more technically-inclined (or formattingly-inclined, you crazy beat poets!), StoriTell supports Markdown syntax. More info on Markdown can be found at the lovable Apple-bigot John Gruber's site, <a href="http://daringfireball.net/projects/markdown/syntax" target="_blank">Daring Fireball</a>.</p>
+        <p class="exitbox"><a class="exitbox">Time to write away!</a></p>
+    </div>
+</div>
+
+<div id="notlongenough" class="modalbox">
+    <h2>Keep on writing!</h2>
+    <div class="explaintext">
+        <p>You haven't written enough of your story! StoriTell requires that your story be at least 100 characters long.</p>
+        <p class="exitbox"><a class="exitbox">I'll go fix it!</a></p>
+    </div>
+</div>
+<div id="spambox" class="modalbox">
+    <h2>Yikes!</h2>
+    <div class="explaintext">
+        <p>Our anti-spam ninjas think your story is spam! They are rather alarmed right now. If you think the ninjas should probably just cool their jets, shoot an email to esten AT storitell DOT com.</p>
+        <p class="exitbox"><a class="exitbox">Ninja please!</a></p>
+    </div>
+</div>
+<div id="failbox" class="modalbox">
+    <h2>This looks bad...</h2>
+    <div class="explaintext">
+        <p>Our normally impenetrable, super-computer-esque server is out getting drunk with friends. An Atari 2600 tried to take its place, but instead of processing your story, thinks you should go play Yars' Revenge or Centipede. If you want to tell on the poor little Atari, email estenh AT storitell DOT com.</p>
+        <p class="exitbox"><a class="exitbox">Stop playing games with my heart, Atari!</a></p>
+    </div>
+</div>
+<div id="repeatbox" class="modalbox">
+    <h2>Relax!</h2>
+    <div class="explaintext">
+        <p>Your story is already in the system! For some reason, the page just hasn't refreshed yet. Sometimes the internets can't keep up with the fury of your writing (that's a compliment, by the way). Hit refresh, and you should see your story under "recent".</p>
+        <p class="exitbox"><a class="exitbox">Great! I'll chillax now.</a></p>
+    </div>
+</div>
+
+
+{% endblock %}

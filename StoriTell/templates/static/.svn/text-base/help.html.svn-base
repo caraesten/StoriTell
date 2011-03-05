@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block content %}
+<div id="staticpage">
+<br /><br />
+<h1>Help out!</h1><br />
+<p>StoriTell can't grow without your help. If you like using the site and want to keep seeing quality stories, please spread the word!</p><br />
+<h2>How to help</h2>
+<p>There are two ways you can help expand this project:</p>
+<p>First: You can print out a PDF poster from this page and put it wherever you think the most people are likely to see it. The text comes from one of the most popular stories on the site.</p>
+<p>Second: You can take one of the existing posters and change the design or story on it. All of these posters were made using the open-source design software <a href="http://www.scribus.net/">Scribus</a>, which means anyone can download the software and make changes. All we at StoriTell ask: Keep the StoriTell logo and a link to the site.</p><br />
+<h2>Posters:</h2>
+<ul>
+<li>Poster #1 - A Frowning Blonde</li>
+<li>PDF | Scribus file</li>
+</ul> 
+</div>
+{% endblock %}

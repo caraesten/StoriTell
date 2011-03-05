@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% block content %}
+<div id="staticpage">
+<h1>StoriTell is about you</h1><br />
+<p>The stories we pass from person to person are a huge part of what makes us who we are. The Internet is both a blessing and a curse for this; we have more ways to share our stories, but we are more afraid than ever to actually share them. With everything being public and tied to an identity, we seem to forget that we haven't always lived this way, that communication between people hasn't always been a matter of public record.</p>
+<p>StoriTell is a public outlet for private ideas. It's a way to get something off your chest without having to worry "will this affect my career?" or "what will he/she think of me if I post this?" It's a cure for remembering every little detail about your personal life. It's persistent memory, without all the strings attached.</p>
+<br /><h2>Anonymity</h2><br />
+<p>Storitell guarantees the anonymity of your work. We do not store any information about you when you submit a story. When you vote up/down a story or comment, your IP is only saved for 24 hours, before the server erases it. The only reason we keep it for that long is so people can't spam their own stories with votes up. We want to make sure that you don't have to worry when you release a story to us.</p>
+<p>With anonymity comes certain legal issues. For more information, it's probably worth going to the <a href="/legal">legal page</a> on the site, but the gist of it is this: You still own your copyright. You let us use your anonymous work, but if you ever want to become un-anonymous and file for copyright protection, you can.</p>
+<br /><h2>Software</h2><br />
+<p>StoriTell is built using open-source software. The free-software movement has contributed immensely to the web we all know and love(-ish). Without the following projects, this site wouldn't exist:</p>
+<br /><ul>
+<li><a href="http://www.djangoproject.com" target="_blank">Django</a> &mdash; StoriTell uses the Django framework for all of the fancy back-end stuff that happens on the server.</li>
+<li><a href="http://www.jquery.com" target="_blank">jQuery</a> &mdash; All of the nice-looking effects, animations and interactions are written in jQuery.</li>
+<li><a href="http://antispam.typepad.com/" target="_blank">TypePad AntiSpam</a> &mdash; Notice how you don't see the site full of Viagra ads and random links to questionable diet pills? Thank these folks.</li>
+<li><a href="http://daringfireball.net/projects/markdown/syntax" target="_blank">Markdown</a> &mdash; This makes stories prettier.</li>
+<li><a href="http://www.ericmmartin.com/projects/simplemodal/" target="_blank">SimpleModal</a> &mdash; All of the little modal-windows were made easy with this plugin.</li>
+<li><a href="http://www.ubuntu.com/server/" target="_blank">Ubuntu</a> &mdash; The entire site runs on this amazing free operating system.</li>
+<li><a href="http://www.apache.org/" target="_blank">Apache</a> &mdash; This pretty much goes without saying.</li>
+<li><a href="http://nginx.org/" target="_blank">Nginx</a> &mdash; A very quick web server for making sure all my JavaScript, CSS and images load quickly.</li>
+</ul>
+<br /><h2>StoriTell is:</h2><br />
+<ul>
+<li><a href="http://www.estenhurtle.com" target="_blank">Esten Hurtle</a> &mdash; Concept, design, development.</li>
+<li>Chase Koeneke &mdash; Logo design.</li>
+<ul>
+<p>Email us: <a href="mailto:estenh@storitell.com">estenh @ storitell . com</a></p>
+<br /><h2>Thanks to:</h2>
+<p class="explain">Justin Myers (code help, badassery), Allan James "Moose" Vestal (code help, application suggestions), Erin Kaplan (contentiousness, bringing up legal issues, promotion, listening to me rant, etc.), James Patrick Schmidt (also contentiousness, support), Caitlin Ward (unintentionally motivating me to actually DO this site), J.P. Mensching (promotion, support), Aaron Slavik (believing in my last project, even though it crashed and burned), Cathy & Bill Hurtle (funding the servers that run this thing)</p>
+</div>
+{% endblock %}
