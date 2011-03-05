@@ -1,0 +1,49 @@
+This is the CMS behind StoriTell.com.
+
+If you understand Python, you can get your own version of the site
+up and running fairly quickly.
+
+REQUIRES:
+
+Django
+Haystack
+Django_evolution
+Tastypie
+jQuery
+
+A BRIEF NOTE ABOUT TEMPLATES:
+
+I'm including them as-is. Please modify them to suit your liking. 
+The CSS is also included.
+
+Here are the descriptions of the different apps:
+
+==========
+Stories
+==========
+The main part of the site, stories manages all of the stories themselves.
+
+Contains models for IP address and story, as well as all Ajax functions
+on the site.
+
+==========
+Quotes
+==========
+App for the random quote generator. Probably should be within stories.
+
+
+==========
+Cust_comments
+==========
+StoriTell's subclass of the Django comments app. Includes comment
+upvoting/downvoting.
+
+==========
+Tastypie
+==========
+Tastypie is a django app designed to provide an easy-to-use REST-ful
+API. It's hosted here: https://github.com/toastdriven/django-tastypie.
+
+If you plan on using it, delete this folder and get the updated version.
+I probably shouldn't include it and will likely remove it from the repo
+in the future.

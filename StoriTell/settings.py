@@ -101,7 +101,6 @@ INSTALLED_APPS = (
     # Uncomment the next line to enable admin documentation:
     'django.contrib.admindocs',
     'storitell.stories',
-    'storitell.beta_codes',
     'django.contrib.redirects',
     'django.contrib.markup',
     'storitell.quotes',

@@ -69,8 +69,7 @@
 					{{Story.maintext|markdown:"safe"}}
 					<div class="bottom">
 						<div class="right">
-							<a href="http://twitter.com/share" class="twitter-share-button" data-count="horizontal" data-url="http://www.storitell.com/{{Story.get_absolute.url}}" data-via="storitell">Tweet</a><script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
-							<iframe src="http://www.facebook.com/plugins/like.php?href=http%3A%2F%2Fwww.storitell.com{{Story.get_absolute_url|urlencode:""}}&amp;layout=button_count&amp;show_faces=true&amp;width=100&amp;action=like&amp;colorscheme=light&amp;height=21" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:100px; height:21px;" allowTransparency="true"></iframe> <a href="http://www.storitell.com{{Story.get_absolute_url}}">Permalink</a>&nbsp;&nbsp;<a id="reportStory{{Story.id}}">Report story</a>&nbsp;&nbsp;<a href="{{Story.get_absolute_url}}#comments">{{num_comments}} Comments.</a>
+							<a href="http://www.storitell.com{{Story.get_absolute_url}}">Permalink</a>&nbsp;&nbsp;<a id="reportStory{{Story.id}}">Report story</a>&nbsp;&nbsp;<a href="{{Story.get_absolute_url}}#comments">{{num_comments}} Comments.</a>
 							<script type="text/javascript">
 							$(document).ready(function(){
 								$("#reportStory{{Story.id}}").bind("click",function(){
